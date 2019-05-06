@@ -9,12 +9,12 @@ package siakkam;
  *
  * @author lenovo
  */
-public class Mengajukan_jadwal extends javax.swing.JFrame {
+public class Detail_menghapus_jadwal extends javax.swing.JFrame {
 
     /**
      * Creates new form Mengajukan_jadwal
      */
-    public Mengajukan_jadwal() {
+    public Detail_menghapus_jadwal() {
         initComponents();
     }
 
@@ -46,8 +46,8 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
         penyelenggara = new javax.swing.JPanel();
         pertanyaan5 = new javax.swing.JLabel();
         jawaban5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Submit = new javax.swing.JButton();
+        Kembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +59,7 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pengajuan Jadwal Kegiatan");
+        jLabel1.setText("Details Jadwal Kegiatan");
 
         javax.swing.GroupLayout JudulLayout = new javax.swing.GroupLayout(Judul);
         Judul.setLayout(JudulLayout);
@@ -106,11 +106,11 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
             nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nama_kegiatanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nama_kegiatanLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban))
+                    .addComponent(jawaban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -143,11 +143,11 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
             tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tempat_kegiatanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tempat_kegiatanLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban2))
+                    .addComponent(jawaban2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -180,11 +180,11 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
             waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_mulaiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(waktu_mulaiLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban3))
+                    .addComponent(jawaban3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -217,11 +217,11 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
             waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_selesaiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(waktu_selesaiLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban4))
+                    .addComponent(jawaban4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -254,11 +254,11 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
             penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, penyelenggaraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(penyelenggaraLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban5))
+                    .addComponent(jawaban5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -286,15 +286,16 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
                 .addComponent(penyelenggara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Submit.setBackground(new java.awt.Color(0, 102, 102));
+        Submit.setText("Hapus");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SubmitActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Kembali");
+        Kembali.setBackground(new java.awt.Color(0, 102, 102));
+        Kembali.setText("Kembali");
 
         javax.swing.GroupLayout Pengajuan_kegiatanLayout = new javax.swing.GroupLayout(Pengajuan_kegiatan);
         Pengajuan_kegiatan.setLayout(Pengajuan_kegiatanLayout);
@@ -305,9 +306,9 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
                         .addGap(399, 399, 399)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -321,8 +322,8 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
                 .addComponent(List_pertanyaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
 
@@ -360,9 +361,9 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jawaban5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,30 +382,45 @@ public class Mengajukan_jadwal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_menghapus_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_menghapus_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_menghapus_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_menghapus_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mengajukan_jadwal().setVisible(true);
+                new Detail_menghapus_jadwal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Judul;
+    private javax.swing.JButton Kembali;
     private javax.swing.JPanel List_pertanyaan;
     private javax.swing.JPanel Pengajuan_kegiatan;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jawaban;
     private javax.swing.JTextField jawaban2;
