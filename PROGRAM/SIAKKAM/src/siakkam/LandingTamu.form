@@ -226,7 +226,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="hari66" alignment="0" max="32767" attributes="0"/>
+                      <Component id="hari1" alignment="0" max="32767" attributes="0"/>
                       <Component id="hari67" alignment="0" max="32767" attributes="0"/>
                       <Component id="hari68" alignment="0" max="32767" attributes="0"/>
                       <Component id="hari69" alignment="0" max="32767" attributes="0"/>
@@ -242,7 +242,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel20" min="-2" pref="28" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="hari66" max="32767" attributes="0"/>
+                          <Component id="hari1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="hari67" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -264,7 +264,7 @@
                     <Property name="text" type="java.lang.String" value="Senin"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="hari66">
+                <Container class="javax.swing.JPanel" name="hari1">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -273,6 +273,9 @@
                         </LineBorder>
                       </Border>
                     </Property>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Default Cursor"/>
+                    </Property>
                   </Properties>
 
                   <Layout>
@@ -280,7 +283,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tanggal66" min="-2" max="-2" attributes="0"/>
+                              <Component id="label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -289,14 +292,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tanggal66" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="tanggal66">
+                    <Component class="javax.swing.JLabel" name="label">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="18" style="1"/>

@@ -36,8 +36,8 @@ public class LandingTamu extends javax.swing.JFrame {
         kalenderUtama = new javax.swing.JPanel();
         Senin = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        hari66 = new javax.swing.JPanel();
-        tanggal66 = new javax.swing.JLabel();
+        hari1 = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
         hari67 = new javax.swing.JPanel();
         tanggal67 = new javax.swing.JLabel();
         hari68 = new javax.swing.JPanel();
@@ -193,26 +193,27 @@ public class LandingTamu extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setText("Senin");
 
-        hari66.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+        hari1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+        hari1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tanggal66.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        tanggal66.setText("1");
+        label.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        label.setText("1");
 
-        javax.swing.GroupLayout hari66Layout = new javax.swing.GroupLayout(hari66);
-        hari66.setLayout(hari66Layout);
-        hari66Layout.setHorizontalGroup(
-            hari66Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hari66Layout.createSequentialGroup()
+        javax.swing.GroupLayout hari1Layout = new javax.swing.GroupLayout(hari1);
+        hari1.setLayout(hari1Layout);
+        hari1Layout.setHorizontalGroup(
+            hari1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hari1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tanggal66)
+                .addComponent(label)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        hari66Layout.setVerticalGroup(
-            hari66Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hari66Layout.createSequentialGroup()
+        hari1Layout.setVerticalGroup(
+            hari1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hari1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tanggal66)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(label)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         hari67.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
@@ -307,7 +308,7 @@ public class LandingTamu extends javax.swing.JFrame {
         Senin.setLayout(SeninLayout);
         SeninLayout.setHorizontalGroup(
             SeninLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(hari66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(hari1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(hari67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(hari68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(hari69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,7 +322,7 @@ public class LandingTamu extends javax.swing.JFrame {
             .addGroup(SeninLayout.createSequentialGroup()
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hari66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hari1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hari67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1305,8 +1306,8 @@ public class LandingTamu extends javax.swing.JFrame {
     private javax.swing.JPanel Selasa;
     private javax.swing.JPanel Senin;
     private javax.swing.JLabel bulan;
+    private javax.swing.JPanel hari1;
     private javax.swing.JPanel hari100;
-    private javax.swing.JPanel hari66;
     private javax.swing.JPanel hari67;
     private javax.swing.JPanel hari68;
     private javax.swing.JPanel hari69;
@@ -1349,9 +1350,9 @@ public class LandingTamu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel kalenderUtama;
+    private javax.swing.JLabel label;
     private javax.swing.JLabel tahun;
     private javax.swing.JLabel tanggal100;
-    private javax.swing.JLabel tanggal66;
     private javax.swing.JLabel tanggal67;
     private javax.swing.JLabel tanggal68;
     private javax.swing.JLabel tanggal69;
