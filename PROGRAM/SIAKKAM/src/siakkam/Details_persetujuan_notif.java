@@ -46,8 +46,9 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         penyelenggara = new javax.swing.JPanel();
         pertanyaan5 = new javax.swing.JLabel();
         jawaban5 = new javax.swing.JTextField();
-        Submit = new javax.swing.JButton();
+        terima = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
+        tolak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -275,27 +276,30 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         List_pertanyaanLayout.setVerticalGroup(
             List_pertanyaanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(List_pertanyaanLayout.createSequentialGroup()
-                .addComponent(nama_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(nama_kegiatan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tempat_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(tempat_kegiatan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(waktu_mulai, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(waktu_mulai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(waktu_selesai, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(waktu_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
                 .addGap(3, 3, 3)
                 .addComponent(penyelenggara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Submit.setBackground(new java.awt.Color(0, 102, 102));
-        Submit.setText("Hapus");
-        Submit.addActionListener(new java.awt.event.ActionListener() {
+        terima.setBackground(new java.awt.Color(0, 102, 102));
+        terima.setText("Terima");
+        terima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitActionPerformed(evt);
+                terimaActionPerformed(evt);
             }
         });
 
         Kembali.setBackground(new java.awt.Color(0, 102, 102));
         Kembali.setText("Kembali");
+
+        tolak.setBackground(new java.awt.Color(0, 102, 102));
+        tolak.setText("Tolak");
 
         javax.swing.GroupLayout Pengajuan_kegiatanLayout = new javax.swing.GroupLayout(Pengajuan_kegiatan);
         Pengajuan_kegiatan.setLayout(Pengajuan_kegiatanLayout);
@@ -305,10 +309,12 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pengajuan_kegiatanLayout.createSequentialGroup()
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
-                        .addGap(399, 399, 399)
-                        .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(263, 263, 263)
+                        .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tolak, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(terima, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -322,7 +328,8 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
                 .addComponent(List_pertanyaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(terima, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(tolak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
@@ -361,9 +368,9 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jawaban5ActionPerformed
 
-    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+    private void terimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terimaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitActionPerformed
+    }//GEN-LAST:event_terimaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,7 +427,6 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
     private javax.swing.JButton Kembali;
     private javax.swing.JPanel List_pertanyaan;
     private javax.swing.JPanel Pengajuan_kegiatan;
-    private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jawaban;
     private javax.swing.JTextField jawaban2;
@@ -435,6 +441,8 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
     private javax.swing.JLabel pertanyaan4;
     private javax.swing.JLabel pertanyaan5;
     private javax.swing.JPanel tempat_kegiatan;
+    private javax.swing.JButton terima;
+    private javax.swing.JButton tolak;
     private javax.swing.JPanel waktu_mulai;
     private javax.swing.JPanel waktu_selesai;
     // End of variables declaration//GEN-END:variables
