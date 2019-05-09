@@ -9,12 +9,12 @@ package siakkam;
  *
  * @author lenovo
  */
-public class Mengajukan_kegiatan extends javax.swing.JFrame {
+public class hapusJadwal extends javax.swing.JFrame {
 
     /**
      * Creates new form Mengajukan_jadwal
      */
-    public Mengajukan_kegiatan() {
+    public hapusJadwal() {
         initComponents();
     }
 
@@ -59,7 +59,7 @@ public class Mengajukan_kegiatan extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Mengajukan Jadwal Kegiatan");
+        jLabel1.setText("Details Jadwal Kegiatan");
 
         javax.swing.GroupLayout JudulLayout = new javax.swing.GroupLayout(Judul);
         Judul.setLayout(JudulLayout);
@@ -287,7 +287,7 @@ public class Mengajukan_kegiatan extends javax.swing.JFrame {
         );
 
         Submit.setBackground(new java.awt.Color(0, 102, 102));
-        Submit.setText("Kirim");
+        Submit.setText("Hapus");
         Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitActionPerformed(evt);
@@ -382,14 +382,42 @@ public class Mengajukan_kegiatan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_kegiatan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_kegiatan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_kegiatan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mengajukan_kegiatan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -398,7 +426,7 @@ public class Mengajukan_kegiatan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Mengajukan_kegiatan().setVisible(true);
+                new hapusJadwal().setVisible(true);
             }
         });
     }

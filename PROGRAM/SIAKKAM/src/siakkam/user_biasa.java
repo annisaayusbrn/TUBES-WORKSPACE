@@ -123,6 +123,7 @@ public class user_biasa extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(0, 102, 102));
 
         next.setBackground(new java.awt.Color(0, 51, 51));
+        next.setMaximumSize(new java.awt.Dimension(1000, 1000));
 
         javax.swing.GroupLayout nextLayout = new javax.swing.GroupLayout(next);
         next.setLayout(nextLayout);
@@ -132,7 +133,7 @@ public class user_biasa extends javax.swing.JFrame {
         );
         nextLayout.setVerticalGroup(
             nextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         back.setBackground(new java.awt.Color(0, 51, 51));
@@ -1338,7 +1339,7 @@ public class user_biasa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kalender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kalender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(Keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)

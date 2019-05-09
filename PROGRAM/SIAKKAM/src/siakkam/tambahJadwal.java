@@ -9,12 +9,12 @@ package siakkam;
  *
  * @author lenovo
  */
-public class Menambahkan_jadwal extends javax.swing.JFrame {
+public class tambahJadwal extends javax.swing.JFrame {
 
     /**
      * Creates new form Mengajukan_jadwal
      */
-    public Menambahkan_jadwal() {
+    public tambahJadwal() {
         initComponents();
     }
 
@@ -106,11 +106,11 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
             nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nama_kegiatanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nama_kegiatanLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban))
+                    .addComponent(jawaban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -143,11 +143,11 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
             tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tempat_kegiatanLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tempat_kegiatanLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban2))
+                    .addComponent(jawaban2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -180,11 +180,11 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
             waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_mulaiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(waktu_mulaiLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban3))
+                    .addComponent(jawaban3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -217,11 +217,11 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
             waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_selesaiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(waktu_selesaiLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban4))
+                    .addComponent(jawaban4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(117, 117, 117))
         );
 
@@ -254,11 +254,11 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
             penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, penyelenggaraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(penyelenggaraLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(pertanyaan5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban5))
+                    .addComponent(jawaban5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -381,21 +381,27 @@ public class Menambahkan_jadwal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menambahkan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tambahJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menambahkan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tambahJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menambahkan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tambahJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menambahkan_jadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tambahJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menambahkan_jadwal().setVisible(true);
+                new tambahJadwal().setVisible(true);
             }
         });
     }

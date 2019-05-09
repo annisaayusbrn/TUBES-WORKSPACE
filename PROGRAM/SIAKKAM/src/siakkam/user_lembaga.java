@@ -9,12 +9,12 @@ package siakkam;
  *
  * @author lenovo
  */
-public class admin_utama extends javax.swing.JFrame {
+public class user_lembaga extends javax.swing.JFrame {
 
     /**
      * Creates new form user
      */
-    public admin_utama() {
+    public user_lembaga() {
         initComponents();
     }
 
@@ -118,9 +118,7 @@ public class admin_utama extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         Keluar = new javax.swing.JButton();
-        Notif = new javax.swing.JButton();
-        Menambah_jadwal = new javax.swing.JButton();
-        Menghapus_jadwal = new javax.swing.JButton();
+        Mengajukan_jadwal = new javax.swing.JButton();
 
         header.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -1313,19 +1311,8 @@ public class admin_utama extends javax.swing.JFrame {
         Keluar.setBackground(new java.awt.Color(0, 102, 102));
         Keluar.setText("Keluar");
 
-        Notif.setBackground(new java.awt.Color(0, 102, 102));
-        Notif.setText("Notifikasi");
-
-        Menambah_jadwal.setBackground(new java.awt.Color(0, 102, 102));
-        Menambah_jadwal.setText("Menambah Jadwal");
-        Menambah_jadwal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Menambah_jadwalActionPerformed(evt);
-            }
-        });
-
-        Menghapus_jadwal.setBackground(new java.awt.Color(0, 102, 102));
-        Menghapus_jadwal.setText("Menghapus Jadwal");
+        Mengajukan_jadwal.setBackground(new java.awt.Color(0, 102, 102));
+        Mengajukan_jadwal.setText("Mengajukan Jadwal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1334,14 +1321,10 @@ public class admin_utama extends javax.swing.JFrame {
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(kalender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(Menghapus_jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Menambah_jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(Notif, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(Keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Mengajukan_jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1352,19 +1335,13 @@ public class admin_utama extends javax.swing.JFrame {
                 .addComponent(kalender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Menambah_jadwal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Menghapus_jadwal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Notif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(Mengajukan_jadwal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Menambah_jadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menambah_jadwalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Menambah_jadwalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1383,14 +1360,22 @@ public class admin_utama extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admin_utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_lembaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admin_utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_lembaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admin_utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_lembaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admin_utama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(user_lembaga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1403,7 +1388,7 @@ public class admin_utama extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin_utama().setVisible(true);
+                new user_lembaga().setVisible(true);
             }
         });
     }
@@ -1411,9 +1396,7 @@ public class admin_utama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BULAN;
     private javax.swing.JButton Keluar;
-    private javax.swing.JButton Menambah_jadwal;
-    private javax.swing.JButton Menghapus_jadwal;
-    private javax.swing.JButton Notif;
+    private javax.swing.JButton Mengajukan_jadwal;
     private javax.swing.JLabel TAHUN;
     private javax.swing.JPanel back;
     private javax.swing.JPanel hari66;
