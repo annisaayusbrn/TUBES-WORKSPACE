@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package siakkam.kalender;
+package kalenderKu;
 
 import java.awt.event.MouseEvent;
 import java.util.Locale;
@@ -28,7 +28,7 @@ public class kalender extends javax.swing.JPanel{
     int jumlahHari;
     int jumlahMinggu;
     
-    kalender(){
+    public kalender(){
         initComponents();
     }
     
@@ -62,7 +62,7 @@ public class kalender extends javax.swing.JPanel{
         
         garisPinggirDefault = new javax.swing.border.LineBorder(new java.awt.Color(0,51,51), 2, true);
         
-        this.setKalender();
+        
         
         header.setBackground(new java.awt.Color(0, 102, 102));
         maju.setBackground(new java.awt.Color(0, 51, 51));
@@ -201,6 +201,8 @@ public class kalender extends javax.swing.JPanel{
                 .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
             ));
+        
+        this.setKalender();
 
     }
     
@@ -231,6 +233,7 @@ public class kalender extends javax.swing.JPanel{
     }
    
     
+     //TESTING
     public static void main(String[] args){
         javax.swing.JFrame frame = new javax.swing.JFrame();
         kalender kalender = new kalender();
