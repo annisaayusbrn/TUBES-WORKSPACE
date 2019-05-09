@@ -46,7 +46,7 @@ public class hapusJadwal extends javax.swing.JFrame {
         penyelenggara = new javax.swing.JPanel();
         pertanyaan5 = new javax.swing.JLabel();
         jawaban5 = new javax.swing.JTextField();
-        Submit = new javax.swing.JButton();
+        Hapus = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -286,11 +286,11 @@ public class hapusJadwal extends javax.swing.JFrame {
                 .addComponent(penyelenggara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Submit.setBackground(new java.awt.Color(0, 102, 102));
-        Submit.setText("Hapus");
-        Submit.addActionListener(new java.awt.event.ActionListener() {
+        Hapus.setBackground(new java.awt.Color(0, 102, 102));
+        Hapus.setText("Hapus");
+        Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitActionPerformed(evt);
+                HapusActionPerformed(evt);
             }
         });
 
@@ -308,7 +308,7 @@ public class hapusJadwal extends javax.swing.JFrame {
                         .addGap(399, 399, 399)
                         .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -322,7 +322,7 @@ public class hapusJadwal extends javax.swing.JFrame {
                 .addComponent(List_pertanyaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(Hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                     .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
@@ -361,9 +361,9 @@ public class hapusJadwal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jawaban5ActionPerformed
 
-    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+    private void HapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitActionPerformed
+    }//GEN-LAST:event_HapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,11 +432,11 @@ public class hapusJadwal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Hapus;
     private javax.swing.JPanel Judul;
     private javax.swing.JButton Kembali;
     private javax.swing.JPanel List_pertanyaan;
     private javax.swing.JPanel Pengajuan_kegiatan;
-    private javax.swing.JButton Submit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jawaban;
     private javax.swing.JTextField jawaban2;

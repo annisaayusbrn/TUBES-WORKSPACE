@@ -50,7 +50,7 @@
                           <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
                           <Component id="Kembali" max="32767" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="Submit" max="32767" attributes="0"/>
+                          <Component id="Hapus" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -69,7 +69,7 @@
                   <Component id="List_pertanyaan" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Submit" pref="56" max="32767" attributes="0"/>
+                      <Component id="Hapus" pref="56" max="32767" attributes="0"/>
                       <Component id="Kembali" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -455,7 +455,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="Submit">
+        <Component class="javax.swing.JButton" name="Hapus">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
@@ -463,7 +463,7 @@
             <Property name="text" type="java.lang.String" value="Hapus"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubmitActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HapusActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Kembali">
