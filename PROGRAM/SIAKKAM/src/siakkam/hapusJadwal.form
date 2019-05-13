@@ -47,12 +47,10 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
-                          <Component id="Kembali" min="-2" pref="134" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="tolak" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="terima" pref="134" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
+                          <Component id="Kembali" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Component id="Hapus" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -71,9 +69,8 @@
                   <Component id="List_pertanyaan" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="terima" pref="56" max="32767" attributes="0"/>
-                      <Component id="tolak" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Kembali" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Hapus" pref="56" max="32767" attributes="0"/>
+                      <Component id="Kembali" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
@@ -458,15 +455,15 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="terima">
+        <Component class="javax.swing.JButton" name="Hapus">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Terima"/>
+            <Property name="text" type="java.lang.String" value="Hapus"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="terimaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HapusActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Kembali">
@@ -475,14 +472,6 @@
               <Color blue="66" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Kembali"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="tolak">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Tolak"/>
           </Properties>
         </Component>
       </SubComponents>

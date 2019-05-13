@@ -9,12 +9,12 @@ package siakkam;
  *
  * @author lenovo
  */
-public class Details_persetujuan_notif extends javax.swing.JFrame {
+public class hapusJadwal extends javax.swing.JFrame {
 
     /**
      * Creates new form Mengajukan_jadwal
      */
-    public Details_persetujuan_notif() {
+    public hapusJadwal() {
         initComponents();
     }
 
@@ -46,9 +46,8 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         penyelenggara = new javax.swing.JPanel();
         pertanyaan5 = new javax.swing.JLabel();
         jawaban5 = new javax.swing.JTextField();
-        terima = new javax.swing.JButton();
+        Hapus = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
-        tolak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -287,19 +286,16 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
                 .addComponent(penyelenggara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        terima.setBackground(new java.awt.Color(0, 102, 102));
-        terima.setText("Terima");
-        terima.addActionListener(new java.awt.event.ActionListener() {
+        Hapus.setBackground(new java.awt.Color(0, 102, 102));
+        Hapus.setText("Hapus");
+        Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                terimaActionPerformed(evt);
+                HapusActionPerformed(evt);
             }
         });
 
         Kembali.setBackground(new java.awt.Color(0, 102, 102));
         Kembali.setText("Kembali");
-
-        tolak.setBackground(new java.awt.Color(0, 102, 102));
-        tolak.setText("Tolak");
 
         javax.swing.GroupLayout Pengajuan_kegiatanLayout = new javax.swing.GroupLayout(Pengajuan_kegiatan);
         Pengajuan_kegiatan.setLayout(Pengajuan_kegiatanLayout);
@@ -309,12 +305,10 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pengajuan_kegiatanLayout.createSequentialGroup()
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tolak, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(terima, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                        .addGap(399, 399, 399)
+                        .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -328,8 +322,7 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
                 .addComponent(List_pertanyaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(terima, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(tolak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                     .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
@@ -368,9 +361,9 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jawaban5ActionPerformed
 
-    private void terimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terimaActionPerformed
+    private void HapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_terimaActionPerformed
+    }//GEN-LAST:event_HapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,14 +382,30 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Details_persetujuan_notif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Details_persetujuan_notif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Details_persetujuan_notif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Details_persetujuan_notif.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -417,12 +426,13 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Details_persetujuan_notif().setVisible(true);
+                new hapusJadwal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Hapus;
     private javax.swing.JPanel Judul;
     private javax.swing.JButton Kembali;
     private javax.swing.JPanel List_pertanyaan;
@@ -441,8 +451,6 @@ public class Details_persetujuan_notif extends javax.swing.JFrame {
     private javax.swing.JLabel pertanyaan4;
     private javax.swing.JLabel pertanyaan5;
     private javax.swing.JPanel tempat_kegiatan;
-    private javax.swing.JButton terima;
-    private javax.swing.JButton tolak;
     private javax.swing.JPanel waktu_mulai;
     private javax.swing.JPanel waktu_selesai;
     // End of variables declaration//GEN-END:variables
