@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2019 at 08:37 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 7.0.0
+-- Waktu pembuatan: 17 Bulan Mei 2019 pada 08.34
+-- Versi server: 10.1.35-MariaDB
+-- Versi PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,95 +19,118 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pbo`
+-- Database: `siakkam`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adminutama`
+-- Struktur dari tabel `daftarakun`
 --
 
-CREATE TABLE `adminutama` (
-  `username_admin` char(25) NOT NULL,
-  `password_admin` char(20) DEFAULT NULL
+CREATE TABLE `daftarakun` (
+  `username` char(20) NOT NULL,
+  `password` char(20) NOT NULL,
+  `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `adminutama`
+-- Dumping data untuk tabel `daftarakun`
 --
 
-INSERT INTO `adminutama` (`username_admin`, `password_admin`) VALUES
-('admin_utama', 'ITERA19');
+INSERT INTO `daftarakun` (`username`, `password`, `type`) VALUES
+('akademik_itera', 'akademik19', 1),
+('bumi_pasundan', 'bp19', 0),
+('fisika_itera', 'hmf19', 0),
+('geofisika_itera', 'hmtg19', 0),
+('geomatika_itera', 'hmgt19', 0),
+('himalaya', 'himalaya19', 0),
+('icositer_itera', 'icositer19', 0),
+('ikm_itera', 'ikm19', 0),
+('km_itera', 'km19', 0),
+('mesin_itera', 'hme19', 0),
+('persitera_itera', 'persitera19', 0),
+('pplk_itera', 'pplk19', 0),
+('renang_itera', 'renang19', 0),
+('sipil_itera', 'hms19', 0),
+('sriwijaya', 'sriwijaya19', 0),
+('ukmbs_itera', 'ukmbs19', 0),
+('umppasa', 'umppasa19', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kegiatan`
+-- Struktur dari tabel `daftarkegiatan`
 --
 
-CREATE TABLE `kegiatan` (
-  `id_kegiatan` char(6) NOT NULL,
-  `nama_kegiatan` varchar(25) DEFAULT NULL,
-  `waktu_mulai` date DEFAULT NULL,
-  `waktu_selesai` date DEFAULT NULL,
-  `id_tempat` char(6) DEFAULT NULL,
-  `id_lembaga` char(6) DEFAULT NULL
+CREATE TABLE `daftarkegiatan` (
+  `id` int(11) NOT NULL,
+  `nama_kegiatan` varchar(25) NOT NULL,
+  `waktu_mulai` datetime DEFAULT NULL,
+  `waktu_selesai` datetime DEFAULT NULL,
+  `id_lembaga` int(11) DEFAULT NULL,
+  `id_tempat` char(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `daftarkegiatan`
+--
+
+INSERT INTO `daftarkegiatan` (`id`, `nama_kegiatan`, `waktu_mulai`, `waktu_selesai`, `id_lembaga`, `id_tempat`) VALUES
+(1, 'buka bersama', '2019-05-24 16:30:00', '2019-05-24 19:00:00', 13, '49G');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lembaga`
+-- Struktur dari tabel `daftarlembaga`
 --
 
-CREATE TABLE `lembaga` (
-  `id_lembaga` char(6) NOT NULL,
-  `nama_lembaga` varchar(25) DEFAULT NULL,
-  `username_lembaga` char(25) DEFAULT NULL,
-  `password_lembaga` char(20) DEFAULT NULL
+CREATE TABLE `daftarlembaga` (
+  `id` int(11) NOT NULL,
+  `nama` char(40) NOT NULL,
+  `username` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `lembaga`
+-- Dumping data untuk tabel `daftarlembaga`
 --
 
-INSERT INTO `lembaga` (`id_lembaga`, `nama_lembaga`, `username_lembaga`, `password_lembaga`) VALUES
-('01U', 'IKM', 'ikm_itera', 'ikm19'),
-('02U', 'HIMALAYA', 'himalaya', 'himalaya19'),
-('03U', 'UMPPASA', 'umppasa', 'umppasa19'),
-('04U', 'SRIWIJAYA', 'sriwijaya', 'sriwijaya19'),
-('05U', 'BUMI PASUNDAN', 'bumi_pasundan', 'bp19'),
-('06U', 'HME', 'mesin_itera', 'hme19'),
-('07U', 'HMF', 'fisika_itera', 'hmf19'),
-('08U', 'PERSITERA', 'persitera_itera', 'persitera19'),
-('09U', 'RENANG', 'renang_itera', 'renang19'),
-('10U', 'HMTG', 'geofisika_itera', 'hmtg19'),
-('11U', 'HMGT', 'geomatika_itera', 'hmgt19'),
-('12U', 'HMS', 'sipil_itera', 'hms19'),
-('13U', 'KM ITERA', 'km_itera', 'km19'),
-('14U', 'UKMBS', 'ukmbs_itera', 'ukmbs19'),
-('15U', 'PPLK', 'pplk_itera', 'pplk19'),
-('16U', 'ICOSITER', 'icositer_itera', 'icositer19'),
-('17U', 'AKADEMIK', 'akademik_itera', 'akademik19');
+INSERT INTO `daftarlembaga` (`id`, `nama`, `username`) VALUES
+(1, 'IKM', 'ikm_itera'),
+(2, 'HIMALAYA', 'himalaya'),
+(3, 'UMPASA', 'umppasa'),
+(4, 'SRIWIJAYA', 'sriwijaya'),
+(5, 'BUMI PASUNDAN', 'bumi_pasundan'),
+(6, 'HME', 'mesin_itera'),
+(7, 'HMF', 'fisika_itera'),
+(8, 'PERSITERA', 'persitera_itera'),
+(9, 'RENANG', 'renang_itera'),
+(10, 'HMTG', 'geofisika_itera'),
+(11, 'HMGT', 'geomatika_itera'),
+(12, 'HMS', 'sipil_itera'),
+(13, 'KM ITERA', 'km_itera'),
+(14, 'UKMBS', 'ukmbs_itera'),
+(15, 'PPLK', 'pplk_itera'),
+(16, 'ICOSITER', 'icositer_itera'),
+(17, 'AKADEMIK', 'akademik_itera');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tempat`
+-- Struktur dari tabel `daftartempat`
 --
 
-CREATE TABLE `tempat` (
+CREATE TABLE `daftartempat` (
   `id_tempat` char(6) NOT NULL,
   `nama_tempat` varchar(25) DEFAULT NULL,
   `wilayah` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tempat`
+-- Dumping data untuk tabel `daftartempat`
 --
 
-INSERT INTO `tempat` (`id_tempat`, `nama_tempat`, `wilayah`) VALUES
+INSERT INTO `daftartempat` (`id_tempat`, `nama_tempat`, `wilayah`) VALUES
 ('01A', 'Ruang Rektor', 'Gedung A'),
 ('01B', 'Ruang Dosen', 'Gedung B'),
 ('01C', 'C101', 'Gedung C'),
@@ -280,46 +305,107 @@ INSERT INTO `tempat` (`id_tempat`, `nama_tempat`, `wilayah`) VALUES
 ('57G', 'Parkiran 1', 'Gedung Kuliah Umum'),
 ('58G', 'Parkiran 2', 'Gedung Kuliah Umum');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengajuan`
+--
+
+CREATE TABLE `pengajuan` (
+  `id` int(11) NOT NULL,
+  `waktu_diajukan` datetime DEFAULT NULL,
+  `nama_kegiatan` varchar(25) DEFAULT NULL,
+  `waktu_mulai` datetime DEFAULT NULL,
+  `waktu_selesai` datetime DEFAULT NULL,
+  `id_lembaga` int(11) DEFAULT NULL,
+  `id_tempat` char(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `adminutama`
+-- Indeks untuk tabel `daftarakun`
 --
-ALTER TABLE `adminutama`
-  ADD PRIMARY KEY (`username_admin`);
+ALTER TABLE `daftarakun`
+  ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `kegiatan`
+-- Indeks untuk tabel `daftarkegiatan`
 --
-ALTER TABLE `kegiatan`
-  ADD PRIMARY KEY (`id_kegiatan`),
-  ADD KEY `id_tempat` (`id_tempat`),
-  ADD KEY `id_lembaga` (`id_lembaga`);
+ALTER TABLE `daftarkegiatan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_lembaga` (`id_lembaga`),
+  ADD KEY `id_tempat` (`id_tempat`);
 
 --
--- Indexes for table `lembaga`
+-- Indeks untuk tabel `daftarlembaga`
 --
-ALTER TABLE `lembaga`
-  ADD PRIMARY KEY (`id_lembaga`);
+ALTER TABLE `daftarlembaga`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`);
 
 --
--- Indexes for table `tempat`
+-- Indeks untuk tabel `daftartempat`
 --
-ALTER TABLE `tempat`
+ALTER TABLE `daftartempat`
   ADD PRIMARY KEY (`id_tempat`);
 
 --
--- Constraints for dumped tables
+-- Indeks untuk tabel `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_lembaga` (`id_lembaga`),
+  ADD KEY `id_tempat` (`id_tempat`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- Constraints for table `kegiatan`
+-- AUTO_INCREMENT untuk tabel `daftarkegiatan`
 --
-ALTER TABLE `kegiatan`
-  ADD CONSTRAINT `kegiatan_ibfk_1` FOREIGN KEY (`id_tempat`) REFERENCES `tempat` (`id_tempat`),
-  ADD CONSTRAINT `kegiatan_ibfk_2` FOREIGN KEY (`id_lembaga`) REFERENCES `lembaga` (`id_lembaga`);
+ALTER TABLE `daftarkegiatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `daftarlembaga`
+--
+ALTER TABLE `daftarlembaga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `daftarkegiatan`
+--
+ALTER TABLE `daftarkegiatan`
+  ADD CONSTRAINT `daftarkegiatan_ibfk_1` FOREIGN KEY (`id_lembaga`) REFERENCES `daftarlembaga` (`id`),
+  ADD CONSTRAINT `daftarkegiatan_ibfk_2` FOREIGN KEY (`id_tempat`) REFERENCES `daftartempat` (`id_tempat`);
+
+--
+-- Ketidakleluasaan untuk tabel `daftarlembaga`
+--
+ALTER TABLE `daftarlembaga`
+  ADD CONSTRAINT `daftarlembaga_ibfk_1` FOREIGN KEY (`username`) REFERENCES `daftarakun` (`username`);
+
+--
+-- Ketidakleluasaan untuk tabel `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD CONSTRAINT `pengajuan_ibfk_1` FOREIGN KEY (`id_lembaga`) REFERENCES `daftarlembaga` (`id`),
+  ADD CONSTRAINT `pengajuan_ibfk_2` FOREIGN KEY (`id_tempat`) REFERENCES `daftartempat` (`id_tempat`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

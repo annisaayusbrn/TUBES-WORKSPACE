@@ -7,6 +7,7 @@ package kalenderKu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import siakkam.signIn;
 
 /**
  *
@@ -15,8 +16,12 @@ import java.awt.event.MouseEvent;
 public class kotakTanggal extends javax.swing.JPanel{
     protected javax.swing.JLabel labelTanggal;
     int nomorKotak;
+    int tanggal;
+    int bulan;
+    siakkam.listJadwal listjadwal;
     
-    kotakTanggal(){
+    kotakTanggal(siakkam.listJadwal listjadwal){
+        this.listjadwal = listjadwal;
         inisialisasi();
     }
     
@@ -27,7 +32,6 @@ public class kotakTanggal extends javax.swing.JPanel{
         labelTanggal.setBorder(new javax.swing.border.EmptyBorder(10, 10, 10, 10));
         labelTanggal.setText("null");
         
-
         this.setLayout(new java.awt.GridLayout());
         this.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(116, 130, 153), 2, true));
         this.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -36,6 +40,7 @@ public class kotakTanggal extends javax.swing.JPanel{
             java.awt.Color bg = getWarnaLatar();
             @Override
             public void mouseClicked(MouseEvent arg0) {
+                kotakdiKlik();
             }
 
             @Override
@@ -62,8 +67,18 @@ public class kotakTanggal extends javax.swing.JPanel{
         
     }
     
-    public void setTanggal(String tanggal_){
-        this.labelTanggal.setText(tanggal_);
+    private void kotakdiKlik(){
+        this.listjadwal.updateTabel();
+        this.listjadwal.setVisible(true);
+    }
+    public void setTanggal(int tanggal_, int bulan_){
+        this.bulan = bulan_;
+        this.tanggal = tanggal_;
+        if(tanggal_!=-1){
+            this.labelTanggal.setText(Integer.toString(tanggal));
+        }else{
+            this.labelTanggal.setText("");
+        }
     }
     
     public void setWarnaLatar(java.awt.Color warna){
@@ -91,14 +106,14 @@ public class kotakTanggal extends javax.swing.JPanel{
         f.setLayout(layout);
         
         kotakTanggal kotak;
-        kotak = new kotakTanggal();
-        kotak.setTanggal("10");
+        kotak = new kotakTanggal(null);
+        kotak.setTanggal(10, 5);
         
         kotakTanggal kotak1[];
         kotak1 = new kotakTanggal[4];
         for(int i=0; i<4; i++){
-            kotak1[i] = new kotakTanggal();
-            kotak1[i].setTanggal(Integer.toString(i));
+            kotak1[i] = new kotakTanggal(null);
+            kotak1[i].setTanggal(i, 0);
             
             
             f.add(kotak1[i]);

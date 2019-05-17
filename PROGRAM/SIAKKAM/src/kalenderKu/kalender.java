@@ -20,6 +20,8 @@ public class kalender extends javax.swing.JPanel{
     String hari_[] = {"Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"};
     String bulan_[] = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"};
     
+    public siakkam.listJadwal listjadwal;
+    
     private javax.swing.border.LineBorder garisPinggirDefault;
     private java.util.Calendar dataKalender;
     
@@ -35,6 +37,7 @@ public class kalender extends javax.swing.JPanel{
     private void initComponents(){
         dataKalender = new java.util.GregorianCalendar();
         
+        listjadwal = new siakkam.listJadwal();
         header = new javax.swing.JPanel();
         maju = new javax.swing.JPanel();
         mundur = new javax.swing.JPanel();
@@ -46,7 +49,7 @@ public class kalender extends javax.swing.JPanel{
         
         int ii;
         for( ii=0; ii<42; ii++){
-            kotak[ii/7][ii%7] = new kotakTanggal();
+            kotak[ii/7][ii%7] = new kotakTanggal(listjadwal);
         }
         
         for( ii=0; ii<7; ii++){
@@ -175,7 +178,7 @@ public class kalender extends javax.swing.JPanel{
         }
         for( ii=0; ii<42; ii++){
             kotak[ii/7][ii%7].setNomor(ii);
-            kotak[ii/7][ii%7].setTanggal("");
+            kotak[ii/7][ii%7].setTanggal(-1, -1);
             kotak[ii/7][ii%7].setBorder(garisPinggirDefault);
             
             body.add(kotak[ii/7][ii%7]);
@@ -204,7 +207,6 @@ public class kalender extends javax.swing.JPanel{
      void setKalender(){
         dataKalender.set(java.util.Calendar.DAY_OF_MONTH, 1);
         
-        
         int year = dataKalender.get(java.util.Calendar.YEAR);
         int month = dataKalender.get(java.util.Calendar.MONTH);
         
@@ -216,12 +218,12 @@ public class kalender extends javax.swing.JPanel{
         jumlahMinggu = dataKalender.getActualMaximum(java.util.Calendar.WEEK_OF_MONTH);
         
         for(int ii=0; ii<42; ii++){
-            kotak[ii/7][ii%7].setTanggal("");
+            kotak[ii/7][ii%7].setTanggal(-1, -1);
         }
         
         int i = hariMulai-1;
         for(int day=1; day<=jumlahHari; day++){
-            kotak[i/7][i%7].setTanggal(Integer.toString(day));
+            kotak[i/7][i%7].setTanggal(day, java.util.Calendar.MONTH);
             i = i + 1;
         }
         

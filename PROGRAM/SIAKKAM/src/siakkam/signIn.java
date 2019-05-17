@@ -40,7 +40,6 @@ public class signIn extends javax.swing.JFrame {
         signInPass = new javax.swing.JPasswordField();
         signInUsername = new javax.swing.JFormattedTextField();
         signIn = new javax.swing.JButton();
-        lupa_pw = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Judul = new javax.swing.JPanel();
         singkatan = new javax.swing.JLabel();
@@ -71,10 +70,6 @@ public class signIn extends javax.swing.JFrame {
                 signInActionPerformed(evt);
             }
         });
-
-        lupa_pw.setBackground(new java.awt.Color(0, 153, 153));
-        lupa_pw.setText("Lupa Password");
-        lupa_pw.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -123,10 +118,7 @@ public class signIn extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(signInUsername, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(signInPass, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Signin_adminLayout.createSequentialGroup()
-                        .addComponent(signIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lupa_pw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(signIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
         Signin_adminLayout.setVerticalGroup(
@@ -140,9 +132,7 @@ public class signIn extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(signInPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(signIn)
-                    .addComponent(lupa_pw))
+                .addComponent(signIn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(peringatan)
                 .addGap(8, 8, 8))
@@ -330,7 +320,6 @@ public class signIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton lupa_pw;
     private javax.swing.JLabel panjangan;
     private javax.swing.JLabel peringatan;
     private javax.swing.JButton signIn;

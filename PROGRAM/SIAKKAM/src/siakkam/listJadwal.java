@@ -16,37 +16,47 @@ public class listJadwal extends javax.swing.JFrame {
     Connection koneksi = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    javax.swing.JFrame parent;
     
     
-    private void updateTabel(){
+    public void updateTabel(){
         try{
             String sql ="select " +
-            "a.id_kegiatan as 'ID Kegiatan', " +
+            "a.id as 'ID Kegiatan', " +
             "a.nama_kegiatan as 'Nama Kegiatan', " +
             "b.nama_tempat as 'Tempat Kegiatan', " +
-            "a.waktu_mulai as 'Tanggal/waktu Mulai', " +
-            "a.waktu_selesai as 'Tanggal/waktu Selesai', " +
-            "c.nama_lembaga as 'Penyelenggara' " +
+            "a.waktu_mulai as 'Mulai', " +
+            "a.waktu_selesai as 'Selesai', " +
+            "c.nama as 'Penyelenggara' " +
             "from " +
-            "kegiatan a, " +
-            "tempat b, " +
-            "lembaga c " +
+            "daftarkegiatan a, " +
+            "daftartempat b, " +
+            "daftarlembaga c " +
             "where " +
-            "a.id_lembaga=c.id_lembaga and " +
+            "a.id_lembaga=c.id and " +
             "a.id_tempat=b.id_tempat;";
-            
+            System.out.println(sql);
             pst = koneksi.prepareStatement(sql);
             rs = pst.executeQuery();
             
             tabelRekap.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e){
+            System.out.println("error disini");
             JOptionPane.showMessageDialog(null, e);
         }
     }
     /**
      * Creates new form List_Jadwal
      */
-    public listJadwal() {
+    public listJadwal(javax.swing.JFrame parent) {
+        this.parent = parent;
+        initComponents();
+        System.out.println("Panggil koneksi ");
+        koneksi = dataBase.KoneksiDB.ConnectDB();
+        updateTabel();
+    }
+    
+    public listJadwal(){
         initComponents();
         System.out.println("Panggil koneksi ");
         koneksi = dataBase.KoneksiDB.ConnectDB();
@@ -66,13 +76,8 @@ public class listJadwal extends javax.swing.JFrame {
         Tabel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelRekap = new javax.swing.JTable();
-        tanggal = new javax.swing.JLabel();
-        bulan = new javax.swing.JLabel();
-        tahun = new javax.swing.JLabel();
         list_kegiatan = new javax.swing.JLabel();
         kembali = new javax.swing.JButton();
-        tgl_sesudah = new javax.swing.JButton();
-        tgl_sebelum = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,20 +125,6 @@ public class listJadwal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelRekap);
 
-        tanggal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        tanggal.setForeground(new java.awt.Color(255, 255, 255));
-        tanggal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        tanggal.setText("1");
-
-        bulan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        bulan.setForeground(new java.awt.Color(255, 255, 255));
-        bulan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bulan.setText("APRIL");
-
-        tahun.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        tahun.setForeground(new java.awt.Color(255, 255, 255));
-        tahun.setText("2019");
-
         list_kegiatan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         list_kegiatan.setForeground(new java.awt.Color(255, 255, 255));
         list_kegiatan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,51 +132,35 @@ public class listJadwal extends javax.swing.JFrame {
 
         kembali.setBackground(new java.awt.Color(0, 102, 102));
         kembali.setText("Kembali");
-
-        tgl_sesudah.setText("Tanggal Sesudahnya");
-
-        tgl_sebelum.setText("Tanggal sebelumnya");
+        kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout TabelLayout = new javax.swing.GroupLayout(Tabel);
         Tabel.setLayout(TabelLayout);
         TabelLayout.setHorizontalGroup(
             TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TabelLayout.createSequentialGroup()
-                .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bulan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tahun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
             .addComponent(list_kegiatan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(TabelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TabelLayout.createSequentialGroup()
+                .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(TabelLayout.createSequentialGroup()
-                        .addComponent(tgl_sebelum, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tgl_sesudah, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
+                        .addContainerGap(491, Short.MAX_VALUE)
+                        .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TabelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1)))
                 .addGap(39, 39, 39))
         );
         TabelLayout.setVerticalGroup(
             TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TabelLayout.createSequentialGroup()
-                .addComponent(list_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(list_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tahun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bulan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(tgl_sebelum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tgl_sesudah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -215,6 +190,11 @@ public class listJadwal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_kembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +233,7 @@ public class listJadwal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new listJadwal().setVisible(true);
+                new listJadwal(null).setVisible(true);
             }
         });
     }
@@ -261,14 +241,9 @@ public class listJadwal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LIST;
     private javax.swing.JPanel Tabel;
-    private javax.swing.JLabel bulan;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembali;
     private javax.swing.JLabel list_kegiatan;
     private javax.swing.JTable tabelRekap;
-    private javax.swing.JLabel tahun;
-    private javax.swing.JLabel tanggal;
-    private javax.swing.JButton tgl_sebelum;
-    private javax.swing.JButton tgl_sesudah;
     // End of variables declaration//GEN-END:variables
 }
