@@ -5,17 +5,58 @@
  */
 package siakkam;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lenovo
  */
 public class ajukanJadwal extends javax.swing.JFrame {
-
+    java.sql.Connection koneksi;
+    java.sql.PreparedStatement pst;
+    java.sql.Statement stmt;
+    java.sql.ResultSet rs;
+    javax.swing.JFrame parent;
+    String username;
+    String namaLembaga;
+    int idLembaga;
+    
     /**
      * Creates new form Mengajukan_jadwal
      */
-    public ajukanJadwal() {
+    public ajukanJadwal(javax.swing.JFrame parent, String username) {
+        this.username = username;
+        this.parent = parent;
         initComponents();
+        
+        koneksi = dataBase.KoneksiDB.ConnectDB();
+        pst = null;
+        rs = null;
+        stmt = null;
+        
+        String username_;
+        try{
+            pst = koneksi.prepareStatement("select a.id, a.nama, b.username from "
+                    + "daftarlembaga a, "
+                    + "daftarakun b "
+                    + "where "
+                    + "a.username = b.username and "
+                    + "a.username = '"+username+"';");
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                idLembaga = rs.getInt("id");
+                namaLembaga = rs.getString("nama");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        this.setTitle(namaLembaga +" Mengajukan Jadwal");
+        this.setSize(600, 500);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE); 
+        mulaiTgl.setDate(new java.util.Date());
+        selesaiTgl.setDate(new java.util.Date());
     }
 
     /**
@@ -30,26 +71,33 @@ public class ajukanJadwal extends javax.swing.JFrame {
         Pengajuan_kegiatan = new javax.swing.JPanel();
         Judul = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        List_pertanyaan = new javax.swing.JPanel();
-        nama_kegiatan = new javax.swing.JPanel();
-        pertanyaan = new javax.swing.JLabel();
-        jawaban = new javax.swing.JTextField();
-        tempat_kegiatan = new javax.swing.JPanel();
-        pertanyaan2 = new javax.swing.JLabel();
-        jawaban2 = new javax.swing.JTextField();
-        waktu_mulai = new javax.swing.JPanel();
-        pertanyaan3 = new javax.swing.JLabel();
-        jawaban3 = new javax.swing.JTextField();
-        waktu_selesai = new javax.swing.JPanel();
-        pertanyaan4 = new javax.swing.JLabel();
-        jawaban4 = new javax.swing.JTextField();
-        penyelenggara = new javax.swing.JPanel();
-        pertanyaan5 = new javax.swing.JLabel();
-        jawaban5 = new javax.swing.JTextField();
         Submit = new javax.swing.JButton();
         Kembali = new javax.swing.JButton();
+        List_pertanyaan = new javax.swing.JPanel();
+        penyelenggara = new javax.swing.JPanel();
+        namaKegiatan = new javax.swing.JPanel();
+        label = new javax.swing.JLabel();
+        fieldNamaKegiatan = new javax.swing.JTextField();
+        tempatKegiatan = new javax.swing.JPanel();
+        label1 = new javax.swing.JLabel();
+        fieldTempatKegiatan = new javax.swing.JTextField();
+        waktuMulai = new javax.swing.JPanel();
+        label2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        mulaiTgl = new org.jdesktop.swingx.JXDatePicker();
+        mulaiJam = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        mulaiMenit = new javax.swing.JSpinner();
+        waktuSelesai = new javax.swing.JPanel();
+        label6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        selesaiTgl = new org.jdesktop.swingx.JXDatePicker();
+        selesaiJam = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        selesaiMenit = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 800));
 
         Pengajuan_kegiatan.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -65,229 +113,16 @@ public class ajukanJadwal extends javax.swing.JFrame {
         Judul.setLayout(JudulLayout);
         JudulLayout.setHorizontalGroup(
             JudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         JudulLayout.setVerticalGroup(
             JudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JudulLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        List_pertanyaan.setBackground(new java.awt.Color(0, 153, 153));
-
-        nama_kegiatan.setBackground(new java.awt.Color(0, 153, 153));
-
-        pertanyaan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pertanyaan.setForeground(new java.awt.Color(255, 255, 255));
-        pertanyaan.setText("Nama Kegiatan     :");
-
-        jawaban.setForeground(new java.awt.Color(153, 153, 153));
-        jawaban.setText("nama kegiatan");
-        jawaban.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jawabanActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout nama_kegiatanLayout = new javax.swing.GroupLayout(nama_kegiatan);
-        nama_kegiatan.setLayout(nama_kegiatanLayout);
-        nama_kegiatanLayout.setHorizontalGroup(
-            nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nama_kegiatanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jawaban, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-        );
-        nama_kegiatanLayout.setVerticalGroup(
-            nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nama_kegiatanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(nama_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nama_kegiatanLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117))
-        );
-
-        tempat_kegiatan.setBackground(new java.awt.Color(0, 153, 153));
-
-        pertanyaan2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pertanyaan2.setForeground(new java.awt.Color(255, 255, 255));
-        pertanyaan2.setText("Tempat Kegiatan  :");
-
-        jawaban2.setForeground(new java.awt.Color(153, 153, 153));
-        jawaban2.setText("tempat kegiatan");
-        jawaban2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jawaban2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout tempat_kegiatanLayout = new javax.swing.GroupLayout(tempat_kegiatan);
-        tempat_kegiatan.setLayout(tempat_kegiatanLayout);
-        tempat_kegiatanLayout.setHorizontalGroup(
-            tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tempat_kegiatanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pertanyaan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jawaban2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
-        );
-        tempat_kegiatanLayout.setVerticalGroup(
-            tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tempat_kegiatanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(tempat_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tempat_kegiatanLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(pertanyaan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117))
-        );
-
-        waktu_mulai.setBackground(new java.awt.Color(0, 153, 153));
-
-        pertanyaan3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pertanyaan3.setForeground(new java.awt.Color(255, 255, 255));
-        pertanyaan3.setText("Waktu Mulai         :");
-
-        jawaban3.setForeground(new java.awt.Color(153, 153, 153));
-        jawaban3.setText("waktu mulai");
-        jawaban3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jawaban3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout waktu_mulaiLayout = new javax.swing.GroupLayout(waktu_mulai);
-        waktu_mulai.setLayout(waktu_mulaiLayout);
-        waktu_mulaiLayout.setHorizontalGroup(
-            waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(waktu_mulaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pertanyaan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jawaban3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
-        );
-        waktu_mulaiLayout.setVerticalGroup(
-            waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_mulaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(waktu_mulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(waktu_mulaiLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(pertanyaan3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117))
-        );
-
-        waktu_selesai.setBackground(new java.awt.Color(0, 153, 153));
-
-        pertanyaan4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pertanyaan4.setForeground(new java.awt.Color(255, 255, 255));
-        pertanyaan4.setText("Waktu Selesai       :");
-
-        jawaban4.setForeground(new java.awt.Color(153, 153, 153));
-        jawaban4.setText("waktu selesai");
-        jawaban4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jawaban4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout waktu_selesaiLayout = new javax.swing.GroupLayout(waktu_selesai);
-        waktu_selesai.setLayout(waktu_selesaiLayout);
-        waktu_selesaiLayout.setHorizontalGroup(
-            waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(waktu_selesaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pertanyaan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jawaban4, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        waktu_selesaiLayout.setVerticalGroup(
-            waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waktu_selesaiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(waktu_selesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(waktu_selesaiLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(pertanyaan4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(117, 117, 117))
-        );
-
-        penyelenggara.setBackground(new java.awt.Color(0, 153, 153));
-
-        pertanyaan5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pertanyaan5.setForeground(new java.awt.Color(255, 255, 255));
-        pertanyaan5.setText("Penyelenggara     :");
-
-        jawaban5.setForeground(new java.awt.Color(153, 153, 153));
-        jawaban5.setText("nama lembaga");
-        jawaban5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jawaban5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout penyelenggaraLayout = new javax.swing.GroupLayout(penyelenggara);
-        penyelenggara.setLayout(penyelenggaraLayout);
-        penyelenggaraLayout.setHorizontalGroup(
-            penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(penyelenggaraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pertanyaan5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jawaban5, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13))
-        );
-        penyelenggaraLayout.setVerticalGroup(
-            penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, penyelenggaraLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(penyelenggaraLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(pertanyaan5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jawaban5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout List_pertanyaanLayout = new javax.swing.GroupLayout(List_pertanyaan);
-        List_pertanyaan.setLayout(List_pertanyaanLayout);
-        List_pertanyaanLayout.setHorizontalGroup(
-            List_pertanyaanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nama_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tempat_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(waktu_mulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(waktu_selesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(penyelenggara, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        List_pertanyaanLayout.setVerticalGroup(
-            List_pertanyaanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(List_pertanyaanLayout.createSequentialGroup()
-                .addComponent(nama_kegiatan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tempat_kegiatan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(waktu_mulai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(waktu_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
-                .addGap(3, 3, 3)
-                .addComponent(penyelenggara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
         );
 
         Submit.setBackground(new java.awt.Color(0, 102, 102));
         Submit.setText("Kirim");
+        Submit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitActionPerformed(evt);
@@ -296,42 +131,318 @@ public class ajukanJadwal extends javax.swing.JFrame {
 
         Kembali.setBackground(new java.awt.Color(0, 102, 102));
         Kembali.setText("Kembali");
+        Kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KembaliActionPerformed(evt);
+            }
+        });
+
+        List_pertanyaan.setBackground(new java.awt.Color(0, 153, 153));
+
+        penyelenggara.setBackground(new java.awt.Color(0, 153, 153));
+
+        namaKegiatan.setBackground(new java.awt.Color(0, 153, 153));
+
+        label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 255, 255));
+        label.setText("Nama Kegiatan");
+
+        fieldNamaKegiatan.setText("Isi nama kegiatan");
+        fieldNamaKegiatan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldNamaKegiatanFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldNamaKegiatanFocusLost(evt);
+            }
+        });
+        fieldNamaKegiatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNamaKegiatanActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout namaKegiatanLayout = new javax.swing.GroupLayout(namaKegiatan);
+        namaKegiatan.setLayout(namaKegiatanLayout);
+        namaKegiatanLayout.setHorizontalGroup(
+            namaKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(namaKegiatanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldNamaKegiatan)
+                .addContainerGap())
+        );
+        namaKegiatanLayout.setVerticalGroup(
+            namaKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(namaKegiatanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(namaKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fieldNamaKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        tempatKegiatan.setBackground(new java.awt.Color(0, 153, 153));
+
+        label1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("Tempat Kegiatan");
+
+        fieldTempatKegiatan.setText("Isi kode tempat kegiatan");
+        fieldTempatKegiatan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldTempatKegiatanFocusGained(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tempatKegiatanLayout = new javax.swing.GroupLayout(tempatKegiatan);
+        tempatKegiatan.setLayout(tempatKegiatanLayout);
+        tempatKegiatanLayout.setHorizontalGroup(
+            tempatKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempatKegiatanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fieldTempatKegiatan))
+        );
+        tempatKegiatanLayout.setVerticalGroup(
+            tempatKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempatKegiatanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tempatKegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fieldTempatKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        waktuMulai.setBackground(new java.awt.Color(0, 153, 153));
+
+        label2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label2.setForeground(new java.awt.Color(255, 255, 255));
+        label2.setText("Waktu Mulai");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Tanggal");
+
+        mulaiJam.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        mulaiJam.setAutoscrolls(true);
+        mulaiJam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mulaiJam.setName(""); // NOI18N
+        mulaiJam.setOpaque(false);
+        mulaiJam.setRequestFocusEnabled(false);
+        mulaiJam.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mulaiJamStateChanged(evt);
+            }
+        });
+        mulaiJam.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                mulaiJamPropertyChange(evt);
+            }
+        });
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Jam");
+
+        mulaiMenit.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 10));
+        mulaiMenit.setAutoscrolls(true);
+        mulaiMenit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        mulaiMenit.setName(""); // NOI18N
+        mulaiMenit.setOpaque(false);
+        mulaiMenit.setRequestFocusEnabled(false);
+        mulaiMenit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mulaiMenitStateChanged(evt);
+            }
+        });
+        mulaiMenit.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                mulaiMenitPropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout waktuMulaiLayout = new javax.swing.GroupLayout(waktuMulai);
+        waktuMulai.setLayout(waktuMulaiLayout);
+        waktuMulaiLayout.setHorizontalGroup(
+            waktuMulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waktuMulaiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mulaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mulaiJam, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mulaiMenit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        waktuMulaiLayout.setVerticalGroup(
+            waktuMulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waktuMulaiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(waktuMulaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(mulaiMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mulaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mulaiJam))
+                .addContainerGap())
+        );
+
+        waktuSelesai.setBackground(new java.awt.Color(0, 153, 153));
+
+        label6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("Waktu Selesai");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tanggal");
+
+        selesaiJam.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        selesaiJam.setAutoscrolls(true);
+        selesaiJam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selesaiJam.setName(""); // NOI18N
+        selesaiJam.setOpaque(false);
+        selesaiJam.setRequestFocusEnabled(false);
+        selesaiJam.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                selesaiJamStateChanged(evt);
+            }
+        });
+        selesaiJam.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                selesaiJamPropertyChange(evt);
+            }
+        });
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Jam");
+
+        selesaiMenit.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 10));
+        selesaiMenit.setAutoscrolls(true);
+        selesaiMenit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selesaiMenit.setName(""); // NOI18N
+        selesaiMenit.setOpaque(false);
+        selesaiMenit.setRequestFocusEnabled(false);
+        selesaiMenit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                selesaiMenitStateChanged(evt);
+            }
+        });
+        selesaiMenit.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                selesaiMenitPropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout waktuSelesaiLayout = new javax.swing.GroupLayout(waktuSelesai);
+        waktuSelesai.setLayout(waktuSelesaiLayout);
+        waktuSelesaiLayout.setHorizontalGroup(
+            waktuSelesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waktuSelesaiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selesaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selesaiJam, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selesaiMenit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        waktuSelesaiLayout.setVerticalGroup(
+            waktuSelesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waktuSelesaiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(waktuSelesaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(selesaiMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selesaiTgl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selesaiJam))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout penyelenggaraLayout = new javax.swing.GroupLayout(penyelenggara);
+        penyelenggara.setLayout(penyelenggaraLayout);
+        penyelenggaraLayout.setHorizontalGroup(
+            penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(namaKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(waktuMulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(waktuSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(penyelenggaraLayout.createSequentialGroup()
+                .addComponent(tempatKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        penyelenggaraLayout.setVerticalGroup(
+            penyelenggaraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(penyelenggaraLayout.createSequentialGroup()
+                .addComponent(namaKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tempatKegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(waktuMulai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(waktuSelesai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(13, 13, 13))
+        );
+
+        javax.swing.GroupLayout List_pertanyaanLayout = new javax.swing.GroupLayout(List_pertanyaan);
+        List_pertanyaan.setLayout(List_pertanyaanLayout);
+        List_pertanyaanLayout.setHorizontalGroup(
+            List_pertanyaanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(penyelenggara, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        List_pertanyaanLayout.setVerticalGroup(
+            List_pertanyaanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(List_pertanyaanLayout.createSequentialGroup()
+                .addComponent(penyelenggara, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout Pengajuan_kegiatanLayout = new javax.swing.GroupLayout(Pengajuan_kegiatan);
         Pengajuan_kegiatan.setLayout(Pengajuan_kegiatanLayout);
         Pengajuan_kegiatanLayout.setHorizontalGroup(
             Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pengajuan_kegiatanLayout.createSequentialGroup()
-                .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
-                        .addGap(399, 399, 399)
-                        .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         Pengajuan_kegiatanLayout.setVerticalGroup(
             Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Pengajuan_kegiatanLayout.createSequentialGroup()
-                .addComponent(Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Judul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(List_pertanyaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(List_pertanyaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Submit, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38))
+                .addGroup(Pengajuan_kegiatanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Pengajuan_kegiatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Pengajuan_kegiatan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,29 +452,94 @@ public class ajukanJadwal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jawabanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jawabanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jawabanActionPerformed
-
-    private void jawaban2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jawaban2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jawaban2ActionPerformed
-
-    private void jawaban3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jawaban3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jawaban3ActionPerformed
-
-    private void jawaban4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jawaban4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jawaban4ActionPerformed
-
-    private void jawaban5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jawaban5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jawaban5ActionPerformed
-
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
+        java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyy-MM-dd");
+        String nama_kegiatan, waktu_mulai, waktu_selesai, id_lembaga, id_tempat;
+        nama_kegiatan = fieldNamaKegiatan.getText();
+        waktu_mulai = format.format(mulaiTgl.getDate())+" "+mulaiJam.getValue().toString()+":"+mulaiMenit.getValue().toString()+":00";
+        waktu_selesai = format.format(selesaiTgl.getDate())+" "+selesaiJam.getValue().toString()+":"+selesaiMenit.getValue().toString()+":00";
+        id_lembaga = Integer.toString(this.idLembaga);
+        id_tempat = fieldTempatKegiatan.getText();
+        format = new java.text.SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+        String sql = "";
+        
+        sql = "insert into pengajuan "
+                + "(waktu_diajukan, nama_kegiatan, waktu_mulai, waktu_selesai, id_lembaga, id_tempat) "
+                + "values "
+                + "('"+ format.format(new java.util.Date()) +"', '"+ nama_kegiatan + "', '" + waktu_mulai + "', '" + waktu_selesai + "', '"
+                + id_lembaga.toUpperCase() + "', '" + id_tempat + "');";
+        
+        System.out.println("SQL : "+sql);
+        
+        try{
+            stmt = koneksi.createStatement();
+            stmt.executeUpdate(sql);
+            System.out.println("Kueri berhasil: ");
+        }catch(Exception e){
+            System.out.print("Query gagal");
+            JOptionPane.showMessageDialog(null,e);
+        }
     }//GEN-LAST:event_SubmitActionPerformed
+
+    private void fieldNamaKegiatanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNamaKegiatanFocusGained
+        // TODO add your handling code here:
+        fieldNamaKegiatan.setText("");
+    }//GEN-LAST:event_fieldNamaKegiatanFocusGained
+
+    private void fieldNamaKegiatanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNamaKegiatanFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNamaKegiatanFocusLost
+
+    private void fieldNamaKegiatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNamaKegiatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNamaKegiatanActionPerformed
+
+    private void fieldTempatKegiatanFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldTempatKegiatanFocusGained
+        // TODO add your handling code here:
+        fieldTempatKegiatan.setText("");
+    }//GEN-LAST:event_fieldTempatKegiatanFocusGained
+
+    private void mulaiJamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mulaiJamStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mulaiJamStateChanged
+
+    private void mulaiJamPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_mulaiJamPropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_mulaiJamPropertyChange
+
+    private void mulaiMenitStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mulaiMenitStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mulaiMenitStateChanged
+
+    private void mulaiMenitPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_mulaiMenitPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mulaiMenitPropertyChange
+
+    private void selesaiJamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selesaiJamStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selesaiJamStateChanged
+
+    private void selesaiJamPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selesaiJamPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selesaiJamPropertyChange
+
+    private void selesaiMenitStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selesaiMenitStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selesaiMenitStateChanged
+
+    private void selesaiMenitPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_selesaiMenitPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selesaiMenitPropertyChange
+
+    private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
+        // TODO add your handling code here:
+        
+        parent.setVisible(true);
+        this.dispose();
+        System.out.println("Tutup Pengajuan Jadwal");
+    }//GEN-LAST:event_KembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,7 +578,7 @@ public class ajukanJadwal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ajukanJadwal().setVisible(true);
+                new ajukanJadwal(null, "umppasa").setVisible(true);
             }
         });
     }
@@ -413,21 +589,27 @@ public class ajukanJadwal extends javax.swing.JFrame {
     private javax.swing.JPanel List_pertanyaan;
     private javax.swing.JPanel Pengajuan_kegiatan;
     private javax.swing.JButton Submit;
+    private javax.swing.JTextField fieldNamaKegiatan;
+    private javax.swing.JTextField fieldTempatKegiatan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jawaban;
-    private javax.swing.JTextField jawaban2;
-    private javax.swing.JTextField jawaban3;
-    private javax.swing.JTextField jawaban4;
-    private javax.swing.JTextField jawaban5;
-    private javax.swing.JPanel nama_kegiatan;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label6;
+    private javax.swing.JSpinner mulaiJam;
+    private javax.swing.JSpinner mulaiMenit;
+    private org.jdesktop.swingx.JXDatePicker mulaiTgl;
+    private javax.swing.JPanel namaKegiatan;
     private javax.swing.JPanel penyelenggara;
-    private javax.swing.JLabel pertanyaan;
-    private javax.swing.JLabel pertanyaan2;
-    private javax.swing.JLabel pertanyaan3;
-    private javax.swing.JLabel pertanyaan4;
-    private javax.swing.JLabel pertanyaan5;
-    private javax.swing.JPanel tempat_kegiatan;
-    private javax.swing.JPanel waktu_mulai;
-    private javax.swing.JPanel waktu_selesai;
+    private javax.swing.JSpinner selesaiJam;
+    private javax.swing.JSpinner selesaiMenit;
+    private org.jdesktop.swingx.JXDatePicker selesaiTgl;
+    private javax.swing.JPanel tempatKegiatan;
+    private javax.swing.JPanel waktuMulai;
+    private javax.swing.JPanel waktuSelesai;
     // End of variables declaration//GEN-END:variables
 }

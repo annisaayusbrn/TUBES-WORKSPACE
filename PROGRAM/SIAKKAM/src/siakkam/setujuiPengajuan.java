@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author lenovo
  */
-public class hapusJadwal extends javax.swing.JFrame {
+public class setujuiPengajuan extends javax.swing.JFrame {
 
     java.sql.Connection koneksi;
     java.sql.PreparedStatement pst;
@@ -43,11 +43,11 @@ public class hapusJadwal extends javax.swing.JFrame {
         penyelenggara = new javax.swing.JPanel();
         pilihPengajuan = new javax.swing.JPanel();
         label5 = new javax.swing.JLabel();
-        idJadwal_ = new javax.swing.JTextField();
+        idPengajuan_ = new javax.swing.JTextField();
         setujui = new javax.swing.JButton();
         labelPesan = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        daftarJadwal = new javax.swing.JTable();
+        daftarPengajuan = new javax.swing.JTable();
         Kembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +60,7 @@ public class hapusJadwal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menghapus Jadwal");
+        jLabel1.setText("Menyetujui Pengajuan Jadwal");
 
         javax.swing.GroupLayout JudulLayout = new javax.swing.GroupLayout(Judul);
         Judul.setLayout(JudulLayout);
@@ -84,22 +84,22 @@ public class hapusJadwal extends javax.swing.JFrame {
 
         label5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label5.setForeground(new java.awt.Color(255, 255, 255));
-        label5.setText("Pilih id jadwal");
+        label5.setText("Pilih id pengajuan");
 
-        idJadwal_.setText("id jadwal");
-        idJadwal_.addFocusListener(new java.awt.event.FocusAdapter() {
+        idPengajuan_.setText("id pengajuan");
+        idPengajuan_.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                idJadwal_FocusGained(evt);
+                idPengajuan_FocusGained(evt);
             }
         });
-        idJadwal_.addActionListener(new java.awt.event.ActionListener() {
+        idPengajuan_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idJadwal_ActionPerformed(evt);
+                idPengajuan_ActionPerformed(evt);
             }
         });
 
         setujui.setBackground(new java.awt.Color(0, 102, 102));
-        setujui.setText("Hapus");
+        setujui.setText("Setujui");
         setujui.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setujui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class hapusJadwal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pilihPengajuanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPesan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(idJadwal_))
+                    .addComponent(idPengajuan_))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(setujui, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -132,14 +132,14 @@ public class hapusJadwal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pilihPengajuanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(idJadwal_)
+                    .addComponent(idPengajuan_)
                     .addComponent(setujui))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelPesan)
                 .addContainerGap())
         );
 
-        daftarJadwal.setModel(new javax.swing.table.DefaultTableModel(
+        daftarPengajuan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -150,7 +150,7 @@ public class hapusJadwal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(daftarJadwal);
+        jScrollPane1.setViewportView(daftarPengajuan);
 
         javax.swing.GroupLayout penyelenggaraLayout = new javax.swing.GroupLayout(penyelenggara);
         penyelenggara.setLayout(penyelenggaraLayout);
@@ -227,17 +227,39 @@ public class hapusJadwal extends javax.swing.JFrame {
 
     private void setujuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setujuiActionPerformed
         // TODO add your handling code here:
-        String idJadwal = idJadwal_.getText();
+        String idPengajuan = idPengajuan_.getText();
         try{
-            String sql;
-            sql = "delete from daftarkegiatan where id="+idJadwal+";";
-            stmt = koneksi.createStatement();
-            stmt.executeUpdate(sql);
-            labelPesan.setText("Berhasil menghapus jadwal!");
-            updateTabel();
+            String sql, nama_kegiatan, waktu_mulai, waktu_selesai, id_lembaga, id_tempat;
+            sql = "select * from pengajuan where id='"+idPengajuan+"'";
+            pst = koneksi.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                nama_kegiatan = rs.getString("nama_kegiatan");
+                waktu_mulai = rs.getString("waktu_mulai");
+                waktu_selesai = rs.getString("waktu_selesai");
+                id_lembaga = rs.getString("id_lembaga");
+                id_tempat = rs.getString("id_tempat");
+                
+                sql = "insert into daftarKegiatan("
+                        + "nama_kegiatan, waktu_mulai, waktu_selesai, id_lembaga, id_tempat) "
+                        + "values "
+                        + "('"+nama_kegiatan+"','"+waktu_mulai+"','"+waktu_selesai+"','"+id_lembaga+"','"+id_tempat+"');";
+                
+                System.out.println("SQL ok : "+sql);
+                stmt = koneksi.createStatement();
+                stmt.executeUpdate(sql);
+                sql = "delete from pengajuan where id="+idPengajuan+";";
+                System.out.println("SQL ok : "+sql);
+                stmt.executeUpdate(sql);
+                updateTabel();
+                labelPesan.setText("Berhasil menyetujui.");
+            }else{
+                labelPesan.setText("ID tidak ditemukan.");
+            }
         }catch(Exception e){
-            labelPesan.setText("ID tidak ditemukan, atau jadwal kosong.");
-            //JOptionPane.showMessageDialog(null, e);
+            labelPesan.setText("ID tidak ditemukan, atau pengajuan kosong.");
+            JOptionPane.showMessageDialog(null, e);
+            
         }
         
     }//GEN-LAST:event_setujuiActionPerformed
@@ -246,23 +268,22 @@ public class hapusJadwal extends javax.swing.JFrame {
         // TODO add your handling code here:
         parent.setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_KembaliActionPerformed
 
-    private void idJadwal_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idJadwal_ActionPerformed
+    private void idPengajuan_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPengajuan_ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idJadwal_ActionPerformed
+    }//GEN-LAST:event_idPengajuan_ActionPerformed
 
-    private void idJadwal_FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_idJadwal_FocusGained
+    private void idPengajuan_FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_idPengajuan_FocusGained
         // TODO add your handling code here:
-        idJadwal_.setText("");
-    }//GEN-LAST:event_idJadwal_FocusGained
+        idPengajuan_.setText("");
+    }//GEN-LAST:event_idPengajuan_FocusGained
 
-    public hapusJadwal(javax.swing.JFrame parent) {
+    public setujuiPengajuan(javax.swing.JFrame parent) {
         this.parent = parent;
         initComponents();
         
-        this.setTitle("Menghapus Jadwal");
+        this.setTitle("Menyetujui Pengajuan");
         this.setSize(800, 800);
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE); 
@@ -274,18 +295,16 @@ public class hapusJadwal extends javax.swing.JFrame {
         koneksi = dataBase.KoneksiDB.ConnectDB();
         try{
             String sql="select "
-                    + "a.id as 'ID', a.nama_kegiatan as 'Nama Kegiatan', a.waktu_mulai as 'Mulai', a.waktu_selesai as 'Selesai', "
-                    + "b.nama as 'Penyelenggara', c.nama_tempat as 'Tempat' "
+                    + "a.id as 'ID', a.waktu_diajukan as 'Diajukan', a.nama_kegiatan as 'Kegiatan', "
+                    + "a.waktu_mulai as 'Mulai', a.waktu_selesai as 'Selesai', b.nama "
                     + "from "
-                    + "daftarkegiatan a, "
-                    + "daftarlembaga b, "
-                    + "daftartempat c "
+                    + "pengajuan a, "
+                    + "daftarlembaga b "
                     + "where "
-                    + "a.id_lembaga=b.id and "
-                    + "a.id_tempat=c.id_tempat;";
+                    + "a.id_lembaga = b.id;";
             pst = koneksi.prepareStatement(sql);
             rs = pst.executeQuery();
-            daftarJadwal.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
+            daftarPengajuan.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -307,62 +326,14 @@ public class hapusJadwal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(setujuiPengajuan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(setujuiPengajuan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(setujuiPengajuan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(hapusJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(setujuiPengajuan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -383,7 +354,7 @@ public class hapusJadwal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new hapusJadwal(null).setVisible(true);
+                new setujuiPengajuan(null).setVisible(true);
             }
         });
     }
@@ -393,8 +364,8 @@ public class hapusJadwal extends javax.swing.JFrame {
     private javax.swing.JButton Kembali;
     private javax.swing.JPanel List_pertanyaan;
     private javax.swing.JPanel Pengajuan_kegiatan;
-    private javax.swing.JTable daftarJadwal;
-    private javax.swing.JTextField idJadwal_;
+    private javax.swing.JTable daftarPengajuan;
+    private javax.swing.JTextField idPengajuan_;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;

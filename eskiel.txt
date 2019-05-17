@@ -1,0 +1,14 @@
+select
+a.id_kegiatan as 'ID Kegiatan',
+a.nama_kegiatan as 'Nama Kegiatan',
+b.nama_tempat as 'Tempat Kegiatan',
+a.waktu_mulai as 'Tanggal/waktu Mulai',
+a.waktu_selesai as 'Tanggal/waktu Selesai',
+c.nama_lembaga as 'Penyelenggara'
+from
+kegiatan a,
+tempat b,
+lembaga c
+where
+a.id_lembaga=c.id_lembaga and
+a.id_tempat=b.id_tempat;

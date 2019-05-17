@@ -5,17 +5,25 @@
  */
 package siakkam;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lenovo
  */
 public class signIn extends javax.swing.JFrame {
-
+    
+    java.sql.Connection koneksi= dataBase.KoneksiDB.ConnectDB();
+    java.sql.PreparedStatement pst= null;;
+    java.sql.ResultSet rs = null;;
     /**
      * Creates new form Sign_in
      */
     public signIn() {
         initComponents();
+        this.setTitle("Login SIAKKAM");
+        this.setSize(300, 400);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE); 
     }
 
     /**
@@ -29,14 +37,15 @@ public class signIn extends javax.swing.JFrame {
 
         TAMPILAN_1 = new javax.swing.JPanel();
         Signin_admin = new javax.swing.JPanel();
-        Password = new javax.swing.JPasswordField();
-        username = new javax.swing.JFormattedTextField();
-        signin = new javax.swing.JButton();
+        signInPass = new javax.swing.JPasswordField();
+        signInUsername = new javax.swing.JFormattedTextField();
+        signIn = new javax.swing.JButton();
         lupa_pw = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Judul = new javax.swing.JPanel();
         singkatan = new javax.swing.JLabel();
         panjangan = new javax.swing.JLabel();
+        peringatan = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -45,24 +54,31 @@ public class signIn extends javax.swing.JFrame {
 
         TAMPILAN_1.setBackground(new java.awt.Color(0, 102, 102));
 
-        Password.setText("jPasswordField1");
+        signInPass.setText("jPasswordField1");
 
-        username.setText("username");
-
-        signin.setBackground(new java.awt.Color(0, 153, 153));
-        signin.setText("Sign In");
-        signin.addActionListener(new java.awt.event.ActionListener() {
+        signInUsername.setText("username");
+        signInUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signinActionPerformed(evt);
+                signInUsernameActionPerformed(evt);
+            }
+        });
+
+        signIn.setBackground(new java.awt.Color(0, 153, 153));
+        signIn.setText("Sign In");
+        signIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        signIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInActionPerformed(evt);
             }
         });
 
         lupa_pw.setBackground(new java.awt.Color(0, 153, 153));
         lupa_pw.setText("Lupa Password");
+        lupa_pw.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Adminnistrator");
+        jLabel2.setText("Login administrator");
 
         Judul.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -92,42 +108,54 @@ public class signIn extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        peringatan.setForeground(new java.awt.Color(255, 0, 0));
+        peringatan.setText(" ");
+
         javax.swing.GroupLayout Signin_adminLayout = new javax.swing.GroupLayout(Signin_admin);
         Signin_admin.setLayout(Signin_adminLayout);
         Signin_adminLayout.setHorizontalGroup(
             Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Signin_adminLayout.createSequentialGroup()
+            .addComponent(Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Signin_adminLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(username)
-                    .addComponent(Password)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Signin_adminLayout.createSequentialGroup()
-                        .addComponent(signin, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addGroup(Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(peringatan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(signInUsername, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(signInPass, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Signin_adminLayout.createSequentialGroup()
+                        .addComponent(signIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lupa_pw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(29, 29, 29))
-            .addComponent(Judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         Signin_adminLayout.setVerticalGroup(
             Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Signin_adminLayout.createSequentialGroup()
                 .addComponent(Judul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signInUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signin)
+                .addComponent(signInPass, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Signin_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(signIn)
                     .addComponent(lupa_pw))
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(peringatan)
+                .addGap(8, 8, 8))
         );
 
         jButton3.setBackground(new java.awt.Color(0, 153, 153));
         jButton3.setText("Masuk");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Non Admin");
@@ -141,16 +169,16 @@ public class signIn extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGap(108, 108, 108)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(86, 86, 86))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -160,11 +188,11 @@ public class signIn extends javax.swing.JFrame {
         TAMPILAN_1Layout.setHorizontalGroup(
             TAMPILAN_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAMPILAN_1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addContainerGap()
                 .addGroup(TAMPILAN_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Signin_admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(97, 97, 97))
+                .addContainerGap())
         );
         TAMPILAN_1Layout.setVerticalGroup(
             TAMPILAN_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,14 +201,14 @@ public class signIn extends javax.swing.JFrame {
                 .addComponent(Signin_admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(50, 50, 50))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TAMPILAN_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TAMPILAN_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +218,73 @@ public class signIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signinActionPerformed
+    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signinActionPerformed
+        String username_ = signInUsername.getText();
+        String password_ = signInPass.getText();
+        System.out.println(username_);
+        System.out.println(password_);
+        String sql = "";
+        try{
+            sql = "select "
+                    + "a.username, a.password, a.type, b.nama "
+                    + "from "
+                    + "daftarlembaga b, "
+                    + "daftarakun a "
+                    + "where "
+                    + "a.username = b.username "
+                    + "and "
+                    + "a.username ='"+username_+"';";
+            System.out.println(sql);
+            
+            pst = koneksi.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            if(rs.next()){  //jika username ditemukan
+                if( rs.getString("password").equals(password_)){
+                    peringatan.setForeground(new java.awt.Color(50, 50, 200));
+                    peringatan.setText("Selamat datang "+rs.getString("nama"));
+                    System.out.println("berhasil masuk "+rs.getString("nama"));
+                    
+                    char a = rs.getString("type").toCharArray()[0];
+                    switch(a){
+                        case '1': //JIKA AKUN LEVEL 1
+                            System.out.println("admin level 1 masuk");
+                            this.setVisible(false);
+                            new userAdminMaster(this, username_).setVisible(true);
+                        break;
+                        case '0': //JIKA AKUN LEVEL 0
+                            System.out.println("admin lembaga masuk");
+                            this.setVisible(false);
+                            new userLembaga(this, username_).setVisible(true);
+                        break;
+                    }
+                    
+                }else{
+                    peringatan.setForeground(new java.awt.Color(255, 0, 0));
+                    peringatan.setText("Username/password salah!");
+                    System.out.println("Salah password");
+                }
+            }else{
+                System.out.println("kosong");
+                peringatan.setForeground(new java.awt.Color(255, 0, 0));
+                peringatan.setText("Username tidak ditemukan!");
+                System.out.println("Username tidak ditemukan");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_signInActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new userBiasa(this).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void signInUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signInUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,7 +324,6 @@ public class signIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Judul;
-    private javax.swing.JPasswordField Password;
     private javax.swing.JPanel Signin_admin;
     private javax.swing.JPanel TAMPILAN_1;
     private javax.swing.JButton jButton3;
@@ -241,8 +332,10 @@ public class signIn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton lupa_pw;
     private javax.swing.JLabel panjangan;
-    private javax.swing.JButton signin;
+    private javax.swing.JLabel peringatan;
+    private javax.swing.JButton signIn;
+    private javax.swing.JPasswordField signInPass;
+    private javax.swing.JFormattedTextField signInUsername;
     private javax.swing.JLabel singkatan;
-    private javax.swing.JFormattedTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,17 +5,52 @@
  */
 package siakkam;
 
+import java.sql.*;
+import javax.swing.*;
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author lenovo
  */
-public class List_Jadwal_untuksemua extends javax.swing.JFrame {
-
+public class listJadwal extends javax.swing.JFrame {
+    Connection koneksi = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    
+    
+    private void updateTabel(){
+        try{
+            String sql ="select " +
+            "a.id_kegiatan as 'ID Kegiatan', " +
+            "a.nama_kegiatan as 'Nama Kegiatan', " +
+            "b.nama_tempat as 'Tempat Kegiatan', " +
+            "a.waktu_mulai as 'Tanggal/waktu Mulai', " +
+            "a.waktu_selesai as 'Tanggal/waktu Selesai', " +
+            "c.nama_lembaga as 'Penyelenggara' " +
+            "from " +
+            "kegiatan a, " +
+            "tempat b, " +
+            "lembaga c " +
+            "where " +
+            "a.id_lembaga=c.id_lembaga and " +
+            "a.id_tempat=b.id_tempat;";
+            
+            pst = koneksi.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            tabelRekap.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     /**
      * Creates new form List_Jadwal
      */
-    public List_Jadwal_untuksemua() {
+    public listJadwal() {
         initComponents();
+        System.out.println("Panggil koneksi ");
+        koneksi = dataBase.KoneksiDB.ConnectDB();
+        updateTabel();
     }
 
     /**
@@ -30,7 +65,7 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
         LIST = new javax.swing.JPanel();
         Tabel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabel_kegiatan = new javax.swing.JTable();
+        tabelRekap = new javax.swing.JTable();
         tanggal = new javax.swing.JLabel();
         bulan = new javax.swing.JLabel();
         tahun = new javax.swing.JLabel();
@@ -46,9 +81,9 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
 
         Tabel.setBackground(new java.awt.Color(0, 102, 102));
 
-        tabel_kegiatan.setAutoCreateRowSorter(true);
-        tabel_kegiatan.setBackground(new java.awt.Color(0, 204, 204));
-        tabel_kegiatan.setModel(new javax.swing.table.DefaultTableModel(
+        tabelRekap.setAutoCreateRowSorter(true);
+        tabelRekap.setBackground(new java.awt.Color(0, 204, 204));
+        tabelRekap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -83,7 +118,7 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabel_kegiatan);
+        jScrollPane1.setViewportView(tabelRekap);
 
         tanggal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         tanggal.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,12 +162,12 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TabelLayout.createSequentialGroup()
-                        .addComponent(tgl_sebelum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tgl_sebelum, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tgl_sesudah, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tgl_sesudah, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
                 .addGap(39, 39, 39))
         );
         TabelLayout.setVerticalGroup(
@@ -145,13 +180,13 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
                     .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bulan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(TabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(tgl_sebelum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tgl_sesudah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(68, 68, 68))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout LISTLayout = new javax.swing.GroupLayout(LIST);
@@ -198,14 +233,18 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(List_Jadwal_untuksemua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(List_Jadwal_untuksemua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(List_Jadwal_untuksemua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(List_Jadwal_untuksemua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listJadwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -214,7 +253,7 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new List_Jadwal_untuksemua().setVisible(true);
+                new listJadwal().setVisible(true);
             }
         });
     }
@@ -226,7 +265,7 @@ public class List_Jadwal_untuksemua extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembali;
     private javax.swing.JLabel list_kegiatan;
-    private javax.swing.JTable tabel_kegiatan;
+    private javax.swing.JTable tabelRekap;
     private javax.swing.JLabel tahun;
     private javax.swing.JLabel tanggal;
     private javax.swing.JButton tgl_sebelum;
